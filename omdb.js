@@ -1,71 +1,84 @@
-function searchMovie(){
-    let movieName = document.getElementById("movieName").value;
-    // console.log(movieName);
+let timer;
 
-    const url = `https://www.omdbapi.com/?apikey=d31fda52&s=${movieName}`
-    // console.log(url);
 
-    async function getData(){
-        try{
-            let res = await fetch(url);
-            let data = await res.json();
-            append(data);
-            // console.log(data);
-            // console.log(data.Search[4]);
-        }
-        catch (err){
-            // console.log(err);
-            setTimeout(() =>{
-                let image = document.createElement('img');
-                image.src = "https://media2.giphy.com/media/5QJd1IC6yBLumMhmtu/200w.webp?cid=ecf05e47qx69qvsrfonwgyikfw383ds9vdvx80wicp5801y3&rid=200w.webp&ct=g"
-                document.getElementById("movieDisplay").innerHTML = "";
-                document.getElementById("movieDisplay").append(image);
+getData = async (name) =>{
+    try{
+        let res = await fetch(`https://www.omdbapi.com/?t=${name}&apikey=d31fda52&`);
+        let data = await res.json();
+        // console.log(data);
+        return data;
 
-            })
-        }
-    
     }
-    getData();
+    catch(err){
+        console.log("err", err);
+    }
 }
 
-function append(data){
-    document.getElementById("movieDisplay").innerHTML = "";
-    // console.log(data.Search);
-    let dataArr = data.Search;
-    dataArr.map((elem) =>{
-        // console.log(elem.Title);
-        let box = document.createElement("div");
+appendMovies = (data) => {
 
-        let title = document.createElement("p");
-        title.innerHTML = elem.Title;
+    // data.forEach(({Title}) =>{
+    let {Title} = data;
+    let {Plot} = data;
+    let {Rating} = data;
+    let {Genre} = data;
+    let {Released} = data;
+    let {Runtime} = data;
+    let {Poster} = data;
+    let {Country} = data;
 
-        let year = document.createElement("p");
-        year.innerHTML = elem.Year;
+    let title_append = document.createElement("p");
+    title_append.innerHTML = Title;
 
-        let poster = document.createElement("img");
-        poster.src = elem.Poster;
+    let plot = document.createElement("p");
+    plot.innerHTML = Plot;
 
-        let imdbId = elem.imdbID;
-        console.log("id", imdbId);
-        
-        getId();
+    let poster = document.createElement("img");
+    poster.src = Poster;
 
-        async function getId(){
-            try{
-                let res = await fetch(imdbId);
-                let rate = await res.json()
+    let genre = document.createElement("p");
+    genre.innerHTML = Genre;
 
-                console.log(rate);
-            }
-            catch(err){
-                console.log(err);
-            }
-        }
+    let released = document.createElement("p");
+    released.innerHTML = Released;
 
-        box.append(title, year, poster)
-        // document.getElementById("movieDisplay").append(box)
+    let runtime = document.createElement("p");
+    runtime.innerHTML = Runtime;
 
-    })
+    let country = document.createElement("p");
+    country.innerHTML = Country;
+
+    let box1 = document.createElement("div");
+    let box2 = document.createElement("div");
+    let box3 = document.createElement("div");
+
+    box1.append(poster);
+    box1.setAttribute("id", "poster");
+    box2.append(title_append, plot, genre, released, runtime, country);
+    box2.setAttribute("id", "movieDetail");
+    box3.append(title_append);
+    box3.setAttribute("id", "topTitle");
+
+    document.getElementById("individual").append(box1, box2);
+
+}
+main = async () =>{ 
+    try{
+        let movieName = document.getElementById("movieName").value;
+        let res = await getData(movieName);
+
+        let data = await res;
+        appendMovies(data);
+    }
+    catch(err){
+        console.log("err", err);
+    }
 }
 
+// debouncing
 
+debounce = (fn, delay) =>{
+    if (timer){
+        clearTimeout(timer);
+    }
+    timer = setTimeout(() => fn(), delay);
+}

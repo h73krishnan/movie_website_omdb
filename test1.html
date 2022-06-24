@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+    <script defer src="https://use.fontawesome.com/releases/v5.0.10/js/all.js" integrity="sha384-slN8GvtUJGnv6ca26v8EzVaR9DC58QEwsIk9q1QXdCU8Yu8ck/tL/5szYlBbqmS+" crossorigin="anonymous"></script>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+
+    <!-- <script src="http://code.jquery.com/jquery-3.6.0.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script> -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+
+    <!-- <link rel="stylesheet" href="./style.css"> -->
+
+    <style>
+        body {
+             font-family: 'Montserrat', sans-serif;
+        }
+        body {
+            background: url("images/image.jpeg");
+        }
+        /* navbar */
+        .nav-menu {
+        background: linear-gradient(rgba(0, 0, 0, .3), rgba(0, 0, 0, .5));
+        padding: 30px;
+        transition: all .7s;
+        }
+
+        .menu-item {
+        font-size: 13px;
+        letter-spacing: 1px;
+        color: #eee;
+        transition: color .5s;
+        }
+
+        .menu-item:hover {
+        color: #70aed2;
+        }
+
+        .nav-active {
+        color: #70aed2;
+        }
+
+        .line1, .line2, .line3 {
+        width: 23px;
+        height: 3px;
+        margin: 5px;
+        transition: all .4s;
+        }
+
+        .change .line1 {
+        transform: rotate(-45deg) translate(-5px, 6px);
+        }
+
+        .change .line2 {
+        opacity: 0;
+        }
+
+        .change .line3 {
+        transform: rotate(45deg) translate(-5px, -6px);
+        }
+
+        .custom-navbar {
+        padding: 5px 30px;
+        background: linear-gradient(rgba(0, 0, 0, .6), rgba(0, 0, 0, .7));
+        }
+        /* end of navbar */
+
+        /* banner */
+        .banner {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 80%;
+        }
+
+        .banner-heading {
+        animation-name: anim;
+        animation-duration: 2s;
+        }
+
+        .banner-par {
+        animation-name: anim;
+        animation-duration: 2s;
+        animation-delay: .5s;
+        animation-fill-mode: backwards;
+        }
+
+        @keyframes anim {
+        0% {
+            transform: translateX(-100px);
+            opacity: 0;
+        }
+        100% {
+            transform: translateX(0);
+            opacity: 1;
+        }
+        }
+        /* end of banner */
+
+        /* display */
+        .banner {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-template-rows: repeat(auto);
+            gap: 5%;
+        }
+        #movieName{
+          width: 50%;
+          margin-top: 10%;
+        }
+        #individual{
+          display: flex;
+          justify-content: space-between;
+          gap: 10%;
+        }
+        p{
+          color: white;
+        }
+    </style>
+</head>
+<body>
+    <!-- navbar -->
+    <nav class="navbar navbar-expand-lg fixed-top nav-menu">
+        <!-- banner -->
+        <div class="text-light text-md-right text-center banner text-md-center">
+        <h1 class="display-4 banner-heading text-md-center"><span class="text-uppercase">M</span><span class="h1">ovies</span><span class="text-uppercase">&nbspR</span><span class="h1">ecommendation</span></h1>
+        `</div>
+        <!-- end of banner -->
+    </nav>
+    <form class="d-flex justify-content-center" role="search" onsubmit="searchMovies(event)">
+      <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" id="movieName" oninput="debounce(main, 2000)">
+    </form>
+      <!-- end of navbar -->
+    <div id="individual">
+
+    </div>
+
+   
+</body>
+</html>
+
+<script src="./omdb.js">
+
+</script>
