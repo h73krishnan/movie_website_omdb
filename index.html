@@ -118,13 +118,55 @@
           width: 50%;
           margin-top: 10%;
         }
-        #individual{
-          display: flex;
-          justify-content: space-between;
-          gap: 10%;
+        
+        /* individual movie */
+        .mission {
+          background: #151f20;
         }
-        p{
-          color: white;
+
+        .underline {
+          width: 150px;
+          border: 3px solid #eee;
+          margin: auto;
+        }
+
+        .fromLeft {
+          animation-name: fromLeft;
+          animation-duration: 3s;
+        }
+
+        .fromRight {
+          animation-name: fromRight;
+          animation-duration: 3s;
+        }
+
+        @keyframes fromLeft {
+          0% {
+            transform: translateX(-120px);
+            opacity: 0;
+          }
+          100% {
+            transform: translateX(0);
+            opacity: 1;
+          }
+        }
+
+        @keyframes fromRight {
+          0% {
+            transform: translateX(30px);
+            opacity: 0;
+          }
+          100% {
+            transform: translateX(0);
+            opacity: 1;
+          }
+        }
+        /* end of individual movie */
+
+        #gridRecommended{
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          grid-template-rows: repeat(auto);
         }
     </style>
 </head>
@@ -138,10 +180,14 @@
         <!-- end of banner -->
     </nav>
     <form class="d-flex justify-content-center" role="search" onsubmit="searchMovies(event)">
-      <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" id="movieName" oninput="debounce(main, 2000)">
+      <input class="form-control me-2" type="search" placeholder="Search movies" aria-label="Search" id="movieName" oninput="debounce(main, 2000)">
     </form>
       <!-- end of navbar -->
     <div id="individual">
+
+    </div>
+
+    <div id="gridRecommended">
 
     </div>
 
