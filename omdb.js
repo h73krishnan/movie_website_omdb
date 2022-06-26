@@ -7,7 +7,7 @@ getData = async (name) =>{
     try{
         let res = await fetch(`https://www.omdbapi.com/?t=${name}&apikey=d31fda52&`);
         let data = await res.json();
-        // console.log(data);
+        console.log("single movie",data);
         return data;
 
     }
@@ -20,7 +20,6 @@ appendMovies = (data) => {
 
     document.getElementById("individual").innerHTML = null;
     let {Title} = data;
-    console.log(Title);
     let {Plot} = data;
     let {Genre} = data;
     let {Released} = data;
@@ -64,7 +63,7 @@ appendMovies = (data) => {
     box2.setAttribute("class", "col-lg-7 text-white text-lg-left text-center mission-text");
     // box2.setAttribute("id", "movieDetail");
     box3.setAttribute("class", "row align-items-center");
-    box3.append(box1, box2);
+    box3.append(poster, box2);
    
 
     document.getElementById("individual").append(box3);
@@ -78,7 +77,7 @@ getData2 = async (name) =>{
         console.log("getData2");
         let res = await fetch(`https://www.omdbapi.com/?s=${name}&apikey=d31fda52&`);
         let data2 = await res.json();
-        console.log(data2);
+        console.log("recommended movies",data2);
         return data2;
     }
     catch(err){
@@ -106,6 +105,7 @@ appendMovies2 = (data) => {
 
     })
 }
+
 main = async () =>{ 
     try{
         let movieName = document.getElementById("movieName").value;
